@@ -1,0 +1,337 @@
+[
+    {
+        "id": "632e365f93c89218",
+        "type": "tab",
+        "label": "Hivemq",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e7098c9cf4ea01ed",
+        "type": "mqtt in",
+        "z": "632e365f93c89218",
+        "name": "Subscribe FIS/ANN Result",
+        "topic": "matlab/result",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "49093550dc84aaa1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "c75f7d20a30e7ea7"
+            ]
+        ]
+    },
+    {
+        "id": "fe7dca54723c67a9",
+        "type": "mqtt out",
+        "z": "632e365f93c89218",
+        "name": "Publish FIS/ANN Result",
+        "topic": "matlab/result",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "49093550dc84aaa1",
+        "x": 1010,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "c75f7d20a30e7ea7",
+        "type": "debug",
+        "z": "632e365f93c89218",
+        "name": "debug 125",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f2e232aa8c24a4e4",
+        "type": "inject",
+        "z": "632e365f93c89218",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "5beccc74af86af7e"
+            ]
+        ]
+    },
+    {
+        "id": "5beccc74af86af7e",
+        "type": "function",
+        "z": "632e365f93c89218",
+        "name": "JSON Irrigation Input",
+        "func": "var input_json = {\n    \"pH\": parseFloat(msg.payload.PH),\n    \"Dissolved_Oxygen\": 11.32224886,\n    \"Turbidity\": 1.247730999,\n    \"Electrical_Conductivity\": parseFloat(msg.payload.EC),\n    \"TDS\": 119.2549571,\n    \"Nitrate\": 3.400043861,\n    \"Phosphate\": 3.065581195,\n    \"BOD\": 7.667683563,\n    \"COD\": 46.9028962,\n    \"Coliform_Bacteria\": 60,\n    \"Ammonia\": 0.308209417,\n    \"soil_moisture\": parseFloat(msg.payload.Soil_Moisture),\n    \"light_intensity\": msg.payload.Light_Intensity,\n    \"air_humidity\": parseFloat(msg.payload.H_DHT22),\n    \"air_temperature\": parseFloat(msg.payload.T_DHT22)\n};\nmsg.payload = input_json;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "7eeb1ac1cb8f9ed9",
+                "341cdaf908edcd7f"
+            ]
+        ]
+    },
+    {
+        "id": "7eeb1ac1cb8f9ed9",
+        "type": "debug",
+        "z": "632e365f93c89218",
+        "name": "debug 129",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "341cdaf908edcd7f",
+        "type": "file",
+        "z": "632e365f93c89218",
+        "name": "Irrigation input",
+        "filename": "D:\\BACHELOR OF MECHATRONICS ENGINEERING WITH HONOURS\\Year 4\\Y4S3\\Intelligent Systems\\Mini Project\\FIS&ANN code\\Irrigation_input_data.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 820,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "828aaf5fb0c951fb",
+        "type": "file in",
+        "z": "632e365f93c89218",
+        "name": "JSON Irrigation Output",
+        "filename": "D:\\BACHELOR OF MECHATRONICS ENGINEERING WITH HONOURS\\Year 4\\Y4S3\\Intelligent Systems\\Mini Project\\FIS&ANN code\\Irrigation_output_data.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 720,
+        "y": 340,
+        "wires": [
+            [
+                "fe7dca54723c67a9",
+                "12161cb894db41ad"
+            ]
+        ]
+    },
+    {
+        "id": "12161cb894db41ad",
+        "type": "debug",
+        "z": "632e365f93c89218",
+        "name": "debug 130",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e25fead358df90e2",
+        "type": "mqtt in",
+        "z": "632e365f93c89218",
+        "name": "Subscribe Sensor Data",
+        "topic": "sensor/data",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "49093550dc84aaa1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "53fb94caa4f40a26",
+                "14c11ebad103a5fc"
+            ]
+        ]
+    },
+    {
+        "id": "53fb94caa4f40a26",
+        "type": "debug",
+        "z": "632e365f93c89218",
+        "name": "debug 133",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "8b7356a6a4db9546",
+        "type": "file",
+        "z": "632e365f93c89218",
+        "name": "Irrigation input V2",
+        "filename": "D:\\BACHELOR OF MECHATRONICS ENGINEERING WITH HONOURS\\Year 4\\Y4S3\\Intelligent Systems\\Mini Project\\FIS&ANN code\\Irrigation_input_dataV2.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 770,
+        "y": 240,
+        "wires": [
+            [
+                "828aaf5fb0c951fb"
+            ]
+        ]
+    },
+    {
+        "id": "14c11ebad103a5fc",
+        "type": "function",
+        "z": "632e365f93c89218",
+        "name": "JSON Irrigation Input V2",
+        "func": "var input_json = {\n    \"pH\": parseFloat(msg.payload.PH),\n    \"Hardness\": 278.585105176988,\n    \"Solids\": 25508.3869488256,\n    \"Chloramines\": 6.74937779548894,\n    \"Conductivity\": parseFloat(msg.payload.EC),\n    \"Organic_carbon\": 497.321752800084,\n    \"Turbidity\": 16.5631665105608,\n    \"Sulfate\": 79.3236783954926,\n    \"Trihalomethanes\": 3.6118603716661,\n    \"soil_moisture\": parseFloat(msg.payload.Soil_Moisture),\n    \"light_intensity\": 500,//msg.payload.Light_Intensity,\n    \"air_humidity\": parseFloat(msg.payload.H_DHT22),\n    \"air_temperature\": parseFloat(msg.payload.T_DHT22)\n};\nmsg.payload = input_json;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "8b7356a6a4db9546"
+            ]
+        ]
+    },
+    {
+        "id": "8870daf602e0bffd",
+        "type": "inject",
+        "z": "632e365f93c89218",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 480,
+        "y": 360,
+        "wires": [
+            [
+                "828aaf5fb0c951fb"
+            ]
+        ]
+    },
+    {
+        "id": "49093550dc84aaa1",
+        "type": "mqtt-broker",
+        "name": "Cloud Hivemq Broker  ",
+        "broker": "178bb5ab32b2442eaa765b6fcba48e4c.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "21233af589e95b91",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "21233af589e95b91",
+        "type": "tls-config",
+        "name": "TLS_HiveMQ",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    }
+]
