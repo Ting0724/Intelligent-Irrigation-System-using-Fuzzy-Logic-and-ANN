@@ -1,0 +1,1 @@
+{"pH":6.3,"Dissolved_Oxygen":11.32224886,"Turbidity":1.247730999,"Electrical_Conductivity":0.06,"TDS":119.2549571,"Nitrate":3.400043861,"Phosphate":3.065581195,"BOD":7.667683563,"COD":46.9028962,"Coliform_Bacteria":60,"Ammonia":0.308209417,"soil_moisture":30,"light_intensity":123,"air_humidity":80.3,"air_temperature":28.7}

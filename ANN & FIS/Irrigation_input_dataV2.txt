@@ -1,0 +1,1 @@
+{"pH":2.4,"Hardness":278.585105176988,"Solids":25508.3869488256,"Chloramines":6.74937779548894,"Conductivity":0.52,"Organic_carbon":497.321752800084,"Turbidity":16.5631665105608,"Sulfate":79.3236783954926,"Trihalomethanes":3.6118603716661,"soil_moisture":30,"light_intensity":500,"air_humidity":80.3,"air_temperature":28.7}
